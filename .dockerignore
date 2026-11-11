@@ -1,0 +1,8 @@
+# .dockerignore: files that are never sent to the image build
+.git
+.venv
+__pycache__
+*.pyc
+data/
+.vscode/
+compose.yaml
