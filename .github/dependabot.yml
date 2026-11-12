@@ -1,0 +1,7 @@
+# dependabot.yml: ask GitHub to check the Python packages every week
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
