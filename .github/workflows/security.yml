@@ -21,3 +21,17 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  image-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build the image
+        run: docker build -t task-tracker:${{ github.sha }} .
+      - name: Scan the image with Trivy
+        uses: aquasecurity/trivy-action@0.35.0
+        with:
+          image-ref: task-tracker:${{ github.sha }}
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
